@@ -3,6 +3,9 @@
     "version": "0.0.1",
     "description": "Bundle HTML",
     "main": "build",
+    "bin": {
+        "vamtiger-bundle-html": "build/bin/index.js"
+    },
     "scripts": {
         "test": "mocha build/test --recursive",
         "build": "tsc",
@@ -23,7 +26,7 @@
         "url": "https://github.com/vamtiger-project/vamtiger-bundle-html/issues"
     },
     "homepage": "https://github.com/vamtiger-project/vamtiger-bundle-html#readme",
-    "types": "build/index.d.ts",
+    "types": "build/types/index.d.ts",
     "devDependencies": {
         "@types/chai": "^4.1.2",
         "@types/mocha": "^2.2.48",
