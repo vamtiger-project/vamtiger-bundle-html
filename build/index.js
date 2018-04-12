@@ -14,6 +14,7 @@ const vamtiger_copy_file_1 = require("vamtiger-copy-file");
 const XRegExp = require("xregexp");
 const types_1 = require("./types");
 const newLines = XRegExp('\\n', 'gms');
+const multiSpace = XRegExp('\\s{2,}', 'g');
 const nothing = '';
 exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
     const entryFilePath = params.entryFilePath;
@@ -21,7 +22,9 @@ exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
     const copyBundleFilePath = bundleFilePath && params.copyBundleFilePath;
     const json = params.json;
     const html = entryFilePath && (yield vamtiger_get_file_data_1.default(entryFilePath, 'utf-8'));
-    const htmlBundle = html && XRegExp.replace(html, newLines, nothing) || '';
+    const htmlBundle = html && XRegExp
+        .replace(html, newLines, nothing)
+        .replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({ html: htmlBundle });
     const copyFileParams = copyBundleFilePath && {
         source: bundleFilePath,
