@@ -36,6 +36,7 @@
         "mocha": "^5.0.4",
         "typescript": "^2.7.2",
         "vamtiger-bash": "0.0.16",
+        "vamtiger-get-directory-content": "0.0.33",
         "vamtiger-node-typescript-commit": "0.0.51"
     },
     "dependencies": {
