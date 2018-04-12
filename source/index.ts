@@ -5,6 +5,7 @@ import * as XRegExp from 'xregexp';
 import { MainParams as Params, ErrorMessage } from './types';
 
 const newLines = XRegExp('\\n', 'gms');
+const multiSpace = XRegExp('\\s{2,}', 'g');
 const nothing = '';
 
 export default async (params: Params) => {
@@ -13,7 +14,9 @@ export default async (params: Params) => {
     const copyBundleFilePath = bundleFilePath && params.copyBundleFilePath;
     const json = params.json;
     const html = entryFilePath && await getFileData(entryFilePath, 'utf-8');
-    const htmlBundle = html && XRegExp.replace(html, newLines, nothing) || '';
+    const htmlBundle = html && XRegExp
+        .replace(html, newLines, nothing)
+        .replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({html: htmlBundle});
     const copyFileParams = copyBundleFilePath && {
         source: bundleFilePath,
