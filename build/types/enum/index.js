@@ -8,6 +8,7 @@ var CommandlineArgs;
     CommandlineArgs["json"] = "json";
     CommandlineArgs["relativePath"] = "relativePath";
     CommandlineArgs["watch"] = "watch";
+    CommandlineArgs["ts"] = "ts";
 })(CommandlineArgs = exports.CommandlineArgs || (exports.CommandlineArgs = {}));
 var ErrorMessage;
 (function (ErrorMessage) {

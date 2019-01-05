@@ -5,6 +5,7 @@ export declare enum CommandlineArgs {
     json = "json",
     relativePath = "relativePath",
     watch = "watch",
+    ts = "ts",
 }
 export declare enum ErrorMessage {
     noEntryFile = "No entry file path specified",

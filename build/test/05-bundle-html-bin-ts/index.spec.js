@@ -12,7 +12,6 @@ const path_1 = require("path");
 const chai_1 = require("chai");
 const vamtiger_bash_1 = require("vamtiger-bash");
 const vamtiger_get_file_data_1 = require("vamtiger-get-file-data");
-const vamtiger_get_directory_content_1 = require("vamtiger-get-directory-content");
 const XRegExp = require("xregexp");
 const types_1 = require("../../types");
 const projectPath = path_1.resolve(__dirname, '../../..');
@@ -20,7 +19,7 @@ const build = XRegExp('/build/');
 const source = '/source/';
 const mockData = 'mock-data';
 const htmlFile = 'index.html';
-const htmlBundle = 'index.json';
+const htmlBundle = 'index.ts';
 const htmlBundleCopy = 'index-copy.json';
 const encoding = 'utf-8';
 const mockDataFolderPath = path_1.resolve(__dirname, mockData);
@@ -29,26 +28,21 @@ const bundleFilePath = path_1.resolve(mockDataFolderPath, htmlBundle);
 const copyBundleFilePath = path_1.resolve(mockDataFolderPath, htmlBundleCopy);
 const createMockDataFolder = `mkdir ${mockDataFolderPath}`;
 const createBundlePath = path_1.resolve(__dirname, '../../bin/index.js');
-const createHtmlBundle = [
+const createHtmlBundleTs = [
     `node ${createBundlePath}`,
     `--${types_1.CommandlineArgs.entryFilePath} ${entryFilePath}`,
-    `--${types_1.CommandlineArgs.bundleFilePath} ${bundleFilePath}`,
-    `--json`
+    `--${types_1.CommandlineArgs.bundleFilePath} ${bundleFilePath}`
 ].join(' ');
 describe('vamtiger-bundle-html: bin should', function () {
-    it('bundle html into a single JSON file', function () {
+    before(function () {
         return __awaiter(this, void 0, void 0, function* () {
-            const directoryContent = yield vamtiger_get_directory_content_1.default(projectPath);
-            const createFolder = directoryContent.includes('source') ?
-                yield vamtiger_bash_1.default(createMockDataFolder).catch(ignore)
-                :
-                    this.skip();
-            const createdBundle = yield vamtiger_bash_1.default(createHtmlBundle);
+            yield vamtiger_bash_1.default(createHtmlBundleTs);
+        });
+    });
+    it('bundle html into a single Typescript file', function () {
+        return __awaiter(this, void 0, void 0, function* () {
             const htmlBundle = yield vamtiger_get_file_data_1.default(bundleFilePath, encoding);
-            const htmlBundleCopy = yield vamtiger_get_file_data_1.default(copyBundleFilePath, encoding);
             chai_1.expect(htmlBundle).to.be.ok;
-            chai_1.expect(htmlBundleCopy).to.be.ok;
-            chai_1.expect(htmlBundle).to.equal(htmlBundleCopy);
         });
     });
 });

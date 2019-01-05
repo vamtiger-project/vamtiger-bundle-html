@@ -15,17 +15,21 @@ const XRegExp = require("xregexp");
 const types_1 = require("./types");
 const newLines = XRegExp('\\n', 'gms');
 const multiSpace = XRegExp('\\s{2,}', 'g');
+const htmlExtension = XRegExp('htm(l)?$');
+const tsExtension = XRegExp('\.ts$');
 const nothing = '';
 exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
-    const entryFilePath = params.entryFilePath;
-    const bundleFilePath = entryFilePath && params.bundleFilePath;
-    const copyBundleFilePath = bundleFilePath && params.copyBundleFilePath;
-    const json = params.json;
+    const { entryFilePath, bundleFilePath: bundleFile, json, copyBundleFilePath } = params;
+    const ts = bundleFile.match(tsExtension);
     const html = entryFilePath && (yield vamtiger_get_file_data_1.default(entryFilePath, 'utf-8'));
     const htmlBundle = html && XRegExp
         .replace(html, newLines, nothing)
         .replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({ html: htmlBundle });
+    const htmlBundleTs = ts && `export default '${htmlBundle}';`;
+    const bundleFilePath = ts && bundleFile.replace(htmlExtension, 'ts')
+        || json && bundleFile.replace(htmlExtension, 'json')
+        || bundleFile;
     const copyFileParams = copyBundleFilePath && {
         source: bundleFilePath,
         destination: copyBundleFilePath
@@ -35,7 +39,7 @@ exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
         throw new Error(types_1.ErrorMessage.noEntryFile);
     else if (!bundleFilePath)
         throw new Error(types_1.ErrorMessage.noBundleFile);
-    yield vamtiger_create_file_1.default(bundleFilePath, htmlBundleJson || htmlBundle);
+    yield vamtiger_create_file_1.default(bundleFilePath, htmlBundleTs || htmlBundleJson || htmlBundle);
     if (copyFileParams)
         yield vamtiger_copy_file_1.default(copyFileParams);
     result = true;
