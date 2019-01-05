@@ -16,7 +16,7 @@ const build = XRegExp('/build/');
 const source = '/source/';
 const mockData =  'mock-data';
 const htmlFile = 'index.html';
-const htmlBundle = 'index.json';
+const htmlBundle = 'index.ts';
 const htmlBundleCopy = 'index-copy.json';
 const encoding = 'utf-8';
 const mockDataFolderPath = resolvePath(
@@ -40,27 +40,21 @@ const createBundlePath = resolvePath(
     __dirname,
     '../../bin/index.js'
 );
-const createHtmlBundle = [
+const createHtmlBundleTs = [
     `node ${createBundlePath}`,
     `--${Args.entryFilePath} ${entryFilePath}`,
-    `--${Args.bundleFilePath} ${bundleFilePath}`,
-    `--json`
+    `--${Args.bundleFilePath} ${bundleFilePath}`
 ].join(' ');
 
 describe('vamtiger-bundle-html: bin should', function () {
-    it('bundle html into a single JSON file', async function () {
-        const directoryContent = await getDirectoryContent(projectPath);
-        const createFolder = directoryContent.includes('source') ? 
-            await bash(createMockDataFolder).catch(ignore)
-            :
-            this.skip();
-        const createdBundle = await bash(createHtmlBundle);
+    before(async function () {
+        await bash(createHtmlBundleTs);
+    })
+    
+    it('bundle html into a single Typescript file', async function () {
         const htmlBundle = await getFileData(bundleFilePath, encoding);
-        const htmlBundleCopy = await getFileData(copyBundleFilePath, encoding);
 
         expect(htmlBundle).to.be.ok;
-        expect(htmlBundleCopy).to.be.ok;
-        expect(htmlBundle).to.equal(htmlBundleCopy);
     })
 });
 

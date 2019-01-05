@@ -5,6 +5,7 @@ export interface MainParams {
     bundleFilePath: PathLike;
     copyBundleFilePath?: PathLike;
     json?: boolean;
+    ts?: boolean
 }
 
 export interface LogParams {

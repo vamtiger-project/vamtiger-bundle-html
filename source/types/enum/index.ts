@@ -4,7 +4,8 @@ export enum CommandlineArgs {
     copyBundleFilePath = 'copyBundleFilePath',
     json = 'json',
     relativePath = 'relativePath',
-    watch = 'watch'
+    watch = 'watch',
+    ts = 'ts'
 }
 
 export enum ErrorMessage {

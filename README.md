@@ -22,6 +22,11 @@ The **relativePath** option can be used to reference **entryFilePath** and **bun
 vamtiger-bundle-html --relativePath --entryFilePath absolute/path/source/index.html --bundleFilePath --bundleFilePath build/index.html
 ```
 
+Referencing the **--bundleFilePath** with the **ts** extension will generate the bundle as a **Typescript** file:
+```bash
+vamtiger-bundle-html --relativePath --entryFilePath absolute/path/source/index.html --bundleFilePath --bundleFilePath build/index.ts
+```
+
 The **json** option can be added to generate compiled output in JSON format:
 ```bash
 vamtiger-bundle-html --relativePath --entryFilePath source/index.html --bundleFilePath --bundleFilePath build/index.json --json

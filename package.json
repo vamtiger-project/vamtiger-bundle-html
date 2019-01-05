@@ -7,9 +7,10 @@
         "vamtiger-bundle-html": "build/bin/index.js"
     },
     "scripts": {
-        "test": "mocha build/test --recursive",
+        "test": "npm run build && mocha build/test --recursive",
+        "clean": "rm -rf buld/*",
         "build": "tsc",
-        "commit": "vamtigerNodeTypescriptCommit --push --publish"
+        "commit": "npm test && vamtigerNodeTypescriptCommit --push --publish --publishSource"
     },
     "repository": {
         "type": "git",
@@ -37,7 +38,7 @@
         "typescript": "^2.7.2",
         "vamtiger-bash": "0.0.16",
         "vamtiger-get-directory-content": "0.0.33",
-        "vamtiger-node-typescript-commit": "0.0.51"
+        "vamtiger-node-typescript-commit": "^0.9.1"
     },
     "dependencies": {
         "vamtiger-copy-file": "0.0.9",
