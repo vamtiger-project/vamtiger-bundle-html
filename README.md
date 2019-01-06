@@ -1,4 +1,4 @@
-# VAMTIGER Bundle Typescript
+# VAMTIGER Bundle HTML
 [VAMTIGER Bundle HTML](https://github.com/vamtiger-project/vamtiger-bundle-html) bundles  HTML into a single compiled output file.
 
 ## Installation
