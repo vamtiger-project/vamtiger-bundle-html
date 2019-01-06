@@ -48,6 +48,11 @@ const createHtmlBundleTs = [
 
 describe('vamtiger-bundle-html: bin should', function () {
     before(async function () {
+        const directoryContent = await getDirectoryContent(projectPath);
+        const createFolder = directoryContent.includes('source') ? 
+            await bash(createMockDataFolder).catch(ignore)
+            :
+            this.skip();
         await bash(createHtmlBundleTs);
     })
     

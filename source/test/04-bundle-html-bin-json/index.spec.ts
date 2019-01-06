@@ -55,12 +55,9 @@ describe('vamtiger-bundle-html: bin should', function () {
             :
             this.skip();
         const createdBundle = await bash(createHtmlBundle);
-        const htmlBundle = await getFileData(bundleFilePath, encoding);
-        const htmlBundleCopy = await getFileData(copyBundleFilePath, encoding);
+        const htmlBundle = require(bundleFilePath);
 
-        expect(htmlBundle).to.be.ok;
-        expect(htmlBundleCopy).to.be.ok;
-        expect(htmlBundle).to.equal(htmlBundleCopy);
+        expect(htmlBundle.html).to.be.ok;
     })
 });
 
