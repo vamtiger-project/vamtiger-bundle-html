@@ -25,7 +25,7 @@ export default async (params: Params) => {
     });
     const htmlBundle = html.replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({html: htmlBundle});
-    const htmlBundleTs = ts && `export default '${htmlBundle}';`;
+    const htmlBundleTs = ts && `export default \`${htmlBundle}\`;`;
     const bundleFilePath = ts && (bundleFile as string).replace(htmlExtension, 'ts')
         || json && (bundleFile as string).replace(htmlExtension, 'json')
         || bundleFile;
