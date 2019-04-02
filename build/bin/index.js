@@ -27,7 +27,7 @@ const entryFolder = args.has(types_1.CommandlineArgs.entryFolder) && (relativePa
     path_1.resolve(workingDirectory, args.get(types_1.CommandlineArgs.entryFolder))
     ||
         args.get(types_1.CommandlineArgs.entryFolder));
-const entryFolderPath = entryFilePath && path_1.dirname(entryFilePath) || '';
+const entryFolderPath = entryFolder && path_1.dirname(entryFolder) || '';
 const bundleFilePath = relativePath &&
     path_1.resolve(workingDirectory, args.get(types_1.CommandlineArgs.bundleFilePath))
     ||
