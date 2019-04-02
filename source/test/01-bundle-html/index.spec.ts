@@ -34,8 +34,10 @@ const copyBundleFilePath = resolvePath(
     htmlFileCopy
 );
 const createMockDataFolder = `mkdir ${mockDataFolderPath}`;
+const entryFolderPath = dirname(entryFilePath);
 const bundleHtmlParams = {
     entryFilePath,
+    entryFolderPath,
     bundleFilePath,
     copyBundleFilePath
 };
@@ -43,7 +45,7 @@ const bundleHtmlParams = {
 describe('vamtiger-bundle-html should', function () {
     it('bundle html into a single HTML file', async function () {
         const directoryContent = await getDirectoryContent(projectPath);
-        const createFolder = directoryContent.includes('source') ? 
+        const createFolder = directoryContent.includes('source') ?
             await bash(createMockDataFolder).catch(ignore)
             :
             this.skip();

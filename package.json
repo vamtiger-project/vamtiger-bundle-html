@@ -42,7 +42,9 @@
     "dependencies": {
         "vamtiger-copy-file": "0.0.9",
         "vamtiger-create-file": "0.0.7",
+        "vamtiger-get-directory-content-recursive": "0.0.15",
         "vamtiger-get-file-data": "0.0.4",
+        "vamtiger-get-file-text": "0.0.6",
         "xregexp": "^4.1.1"
     }
 }

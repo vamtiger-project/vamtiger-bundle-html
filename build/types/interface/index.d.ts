@@ -5,12 +5,10 @@ export interface MainParams {
     copyBundleFilePath?: string;
     json?: boolean;
 }
-
 export interface LogParams {
     eventType: string;
     fileName: string;
 }
-
 export interface IGetHtml {
     entryFilePath?: string;
     entryFolderPath?: string;

@@ -3,33 +3,27 @@ import createFile from 'vamtiger-create-file';
 import copyFile from'vamtiger-copy-file';
 import * as XRegExp from 'xregexp';
 import { MainParams as Params, ErrorMessage } from './types';
+import getHtml from './get-html';
 
 const newLines = XRegExp('\\n', 'gms');
 const multiSpace = XRegExp('\\s{2,}', 'g');
 const nothing = '';
 
-export default async (params: Params) => {
-    const entryFilePath = params.entryFilePath;
-    const bundleFilePath = entryFilePath && params.bundleFilePath;
-    const copyBundleFilePath = bundleFilePath && params.copyBundleFilePath;
-    const json = params.json;
-    const html = entryFilePath && await getFileData(entryFilePath, 'utf-8');
-    const htmlBundle = html && XRegExp
-        .replace(html, newLines, nothing)
-        .replace(multiSpace, '') || '';
+export default async ({ entryFilePath, entryFolderPath, bundleFilePath, copyBundleFilePath, json }: Params) => {
+    const html = await getHtml({ entryFilePath, entryFolderPath });
+    const htmlBundle = html.replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({html: htmlBundle});
-    const copyFileParams = copyBundleFilePath && {
+    const copyFileParams = copyBundleFilePath && bundleFilePath && copyBundleFilePath && {
         source: bundleFilePath,
         destination: copyBundleFilePath
     };
     let result = false;
 
-    if (!entryFilePath) throw new Error(ErrorMessage.noEntryFile);
-    else if (!bundleFilePath) throw new Error(ErrorMessage.noBundleFile);
+    if (!bundleFilePath) throw new Error(ErrorMessage.noBundleFile);
 
     await createFile(bundleFilePath, htmlBundleJson || htmlBundle);
 
-    if (copyFileParams) await copyFile(copyFileParams);
+    copyFileParams && await copyFile(copyFileParams);
 
     result = true;
 
