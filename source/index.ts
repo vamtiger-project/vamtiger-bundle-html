@@ -23,7 +23,7 @@ export default async (params: Params) => {
         entryFilePath,
         entryFolderPath
     });
-    const htmlBundle = html.replace(multiSpace, '') || '';
+    const htmlBundle = html.replace(multiSpace, ' ') || '';
     const htmlBundleJson = json && JSON.stringify({html: htmlBundle});
     const htmlBundleTs = ts && `export default \`${htmlBundle}\`;`;
     const bundleFilePath = ts && (bundleFile as string).replace(htmlExtension, 'ts')
