@@ -6,7 +6,8 @@ import {
 } from './types';
 
 const htmlExtension = /\.(html|svg)$/;
-const newline = '\n'
+const newline = '\n';
+const space = ' ';
 
 export default async function ({ entryFilePath, entryFolderPath }: IGetHtml) {
     const { file: files = [] } = (entryFolderPath && await getFolderContent({
@@ -20,7 +21,10 @@ export default async function ({ entryFilePath, entryFolderPath }: IGetHtml) {
     const htmlList = await Promise.all(
         htmlFiles.map(htmlFile => getFileText(htmlFile as string))
     );
-    const html = htmlList.length && htmlList.join(newline) || '';
+    const html = htmlList.length && htmlList
+        .join(newline)
+        .replace(newline, space)
+        || '';
 
     return html;
 }
