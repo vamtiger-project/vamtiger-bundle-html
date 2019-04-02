@@ -1,6 +1,6 @@
 {
     "name": "vamtiger-bundle-html",
-    "version": "0.2.1-0",
+    "version": "0.2.2-0",
     "description": "Bundle HTML",
     "main": "build",
     "bin": {
