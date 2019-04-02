@@ -4,6 +4,7 @@ export interface MainParams {
     bundleFilePath: string;
     copyBundleFilePath?: string;
     json?: boolean;
+    ts?: boolean;
 }
 export interface LogParams {
     eventType: string;

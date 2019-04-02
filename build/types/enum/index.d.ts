@@ -5,7 +5,8 @@ export declare enum CommandlineArgs {
     copyBundleFilePath = "copyBundleFilePath",
     json = "json",
     relativePath = "relativePath",
-    watch = "watch"
+    watch = "watch",
+    ts = "ts"
 }
 export declare enum ErrorMessage {
     noEntryPath = "No entry path path specified",

@@ -11,7 +11,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
 const chai_1 = require("chai");
 const vamtiger_bash_1 = require("vamtiger-bash");
-const vamtiger_get_file_data_1 = require("vamtiger-get-file-data");
 const vamtiger_get_directory_content_1 = require("vamtiger-get-directory-content");
 const XRegExp = require("xregexp");
 const types_1 = require("../../types");
@@ -33,7 +32,6 @@ const createHtmlBundle = [
     `node ${createBundlePath}`,
     `--${types_1.CommandlineArgs.entryFilePath} ${entryFilePath}`,
     `--${types_1.CommandlineArgs.bundleFilePath} ${bundleFilePath}`,
-    `--${types_1.CommandlineArgs.copyBundleFilePath} ${copyBundleFilePath}`,
     `--json`
 ].join(' ');
 describe('vamtiger-bundle-html: bin should', function () {
@@ -45,11 +43,8 @@ describe('vamtiger-bundle-html: bin should', function () {
                 :
                     this.skip();
             const createdBundle = yield vamtiger_bash_1.default(createHtmlBundle);
-            const htmlBundle = yield vamtiger_get_file_data_1.default(bundleFilePath, encoding);
-            const htmlBundleCopy = yield vamtiger_get_file_data_1.default(copyBundleFilePath, encoding);
-            chai_1.expect(htmlBundle).to.be.ok;
-            chai_1.expect(htmlBundleCopy).to.be.ok;
-            chai_1.expect(htmlBundle).to.equal(htmlBundleCopy);
+            const htmlBundle = require(bundleFilePath);
+            chai_1.expect(htmlBundle.html).to.be.ok;
         });
     });
 });
