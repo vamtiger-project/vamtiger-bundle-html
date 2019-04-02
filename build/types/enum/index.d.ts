@@ -1,13 +1,15 @@
 export declare enum CommandlineArgs {
     entryFilePath = "entryFilePath",
+    entryFolder = "entryFolder",
     bundleFilePath = "bundleFilePath",
     copyBundleFilePath = "copyBundleFilePath",
     json = "json",
     relativePath = "relativePath",
     watch = "watch",
+    ts = "ts",
 }
 export declare enum ErrorMessage {
-    noEntryFile = "No entry file path specified",
+    noEntryPath = "No entry path path specified",
     noBundleFile = "No bundle file path specified",
 }
 export declare enum FileExtension {

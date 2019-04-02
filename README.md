@@ -1,4 +1,4 @@
-# VAMTIGER Bundle Typescript
+# VAMTIGER Bundle HTML
 [VAMTIGER Bundle HTML](https://github.com/vamtiger-project/vamtiger-bundle-html) bundles  HTML into a single compiled output file.
 
 ## Installation
@@ -20,6 +20,11 @@ vamtiger-bundle-html --entryFilePath absolute/path/source/index.html --bundleFil
 The **relativePath** option can be used to reference **entryFilePath** and **bundleFilePath** relative to the current working directory:
 ```bash
 vamtiger-bundle-html --relativePath --entryFilePath absolute/path/source/index.html --bundleFilePath --bundleFilePath build/index.html
+```
+
+Referencing the **--bundleFilePath** with the **ts** extension will generate the bundle as a **Typescript** file:
+```bash
+vamtiger-bundle-html --relativePath --entryFilePath absolute/path/source/index.html --bundleFilePath --bundleFilePath build/index.ts
 ```
 
 The **json** option can be added to generate compiled output in JSON format:
