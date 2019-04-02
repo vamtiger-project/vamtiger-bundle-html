@@ -13,6 +13,7 @@ const vamtiger_get_directory_content_recursive_1 = require("vamtiger-get-directo
 const vamtiger_get_file_text_1 = require("vamtiger-get-file-text");
 const htmlExtension = /\.(html|svg)$/;
 const newline = '\n';
+const newlines = /\n/g;
 const space = ' ';
 function default_1({ entryFilePath, entryFolderPath }) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,7 +28,7 @@ function default_1({ entryFilePath, entryFolderPath }) {
         const htmlList = yield Promise.all(htmlFiles.map(htmlFile => vamtiger_get_file_text_1.default(htmlFile)));
         const html = htmlList.length && htmlList
             .join(newline)
-            .replace(newline, space)
+            .replace(newlines, space)
             || '';
         return html;
     });
