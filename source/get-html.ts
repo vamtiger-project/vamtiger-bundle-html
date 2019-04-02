@@ -7,6 +7,7 @@ import {
 
 const htmlExtension = /\.(html|svg)$/;
 const newline = '\n';
+const newlines = /\n/g;
 const space = ' ';
 
 export default async function ({ entryFilePath, entryFolderPath }: IGetHtml) {
@@ -23,7 +24,7 @@ export default async function ({ entryFilePath, entryFolderPath }: IGetHtml) {
     );
     const html = htmlList.length && htmlList
         .join(newline)
-        .replace(newline, space)
+        .replace(newlines, space)
         || '';
 
     return html;
