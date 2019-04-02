@@ -46,9 +46,7 @@ const bundleHtmlParams = {
     json
 }
 
-if (!entryFilePath) {
-    throw new Error(ErrorMessage.noEntryFile);
-} else if(!bundleFilePath) {
+if(!bundleFilePath) {
     throw new Error(ErrorMessage.noBundleFile);
 } else if(watch && entryFolderPath) {
     watchFolder(entryFolderPath, watchOptions, createBundle);
