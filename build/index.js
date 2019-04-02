@@ -27,7 +27,7 @@ exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
     });
     const htmlBundle = html.replace(multiSpace, '') || '';
     const htmlBundleJson = json && JSON.stringify({ html: htmlBundle });
-    const htmlBundleTs = ts && `export default '${htmlBundle}';`;
+    const htmlBundleTs = ts && `export default \`${htmlBundle}\`;`;
     const bundleFilePath = ts && bundleFile.replace(htmlExtension, 'ts')
         || json && bundleFile.replace(htmlExtension, 'json')
         || bundleFile;
