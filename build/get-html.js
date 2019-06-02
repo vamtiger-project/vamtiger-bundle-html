@@ -15,12 +15,13 @@ const htmlExtension = /\.(html|svg)$/;
 const newline = '\n';
 const newlines = /\n/g;
 const space = ' ';
-function default_1({ entryFilePath, entryFolderPath }) {
+function default_1({ entryFilePath, entryFolderPath, ignore }) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { file: files = [] } = (entryFolderPath && (yield vamtiger_get_directory_content_recursive_1.default({
+        const { file: currentFiles = [] } = (entryFolderPath && (yield vamtiger_get_directory_content_recursive_1.default({
             path: entryFolderPath,
             classified: true
         })) || {});
+        const files = ignore && currentFiles.filter(currentFile => !currentFile.match(ignore)) || currentFiles;
         const htmlFiles = Array.from(new Set([
             entryFilePath,
             ...files

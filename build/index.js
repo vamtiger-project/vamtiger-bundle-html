@@ -19,11 +19,12 @@ const htmlExtension = XRegExp('htm(l)?$');
 const tsExtension = XRegExp('\.ts$');
 const nothing = '';
 exports.default = (params) => __awaiter(this, void 0, void 0, function* () {
-    const { entryFilePath, entryFolderPath, bundleFilePath: bundleFile, json, copyBundleFilePath } = params;
+    const { entryFilePath, entryFolderPath, bundleFilePath: bundleFile, json, copyBundleFilePath, ignore } = params;
     const ts = bundleFile.match(tsExtension);
     const html = yield get_html_1.default({
         entryFilePath,
-        entryFolderPath
+        entryFolderPath,
+        ignore
     });
     const htmlBundle = html.replace(multiSpace, ' ') || '';
     const htmlBundleJson = json && JSON.stringify({ html: htmlBundle });

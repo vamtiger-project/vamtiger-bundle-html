@@ -7,6 +7,7 @@ export declare enum CommandlineArgs {
     relativePath = "relativePath",
     watch = "watch",
     ts = "ts",
+    ignore = "ignore",
 }
 export declare enum ErrorMessage {
     noEntryPath = "No entry path path specified",

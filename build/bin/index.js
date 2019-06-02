@@ -35,6 +35,8 @@ const bundleFilePath = relativePath &&
 const copyBundleFilePath = args.get(types_1.CommandlineArgs.copyBundleFilePath);
 const json = args.has(types_1.CommandlineArgs.json);
 const watch = args.has(types_1.CommandlineArgs.watch);
+const ignorePattern = args.has(types_1.CommandlineArgs.ignore) && args.get(types_1.CommandlineArgs.ignore);
+const ignore = ignorePattern && new RegExp(ignorePattern, 'ig');
 const watchOptions = {
     recursive: true
 };
@@ -43,7 +45,8 @@ const bundleHtmlParams = {
     entryFolderPath,
     bundleFilePath,
     copyBundleFilePath,
-    json
+    json,
+    ignore: ignore || undefined
 };
 if (!bundleFilePath) {
     throw new Error(types_1.ErrorMessage.noBundleFile);

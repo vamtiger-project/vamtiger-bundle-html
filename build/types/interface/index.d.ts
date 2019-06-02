@@ -5,6 +5,7 @@ export interface MainParams {
     copyBundleFilePath?: string;
     json?: boolean;
     ts?: boolean;
+    ignore?: RegExp;
 }
 export interface LogParams {
     eventType: string;
@@ -13,4 +14,5 @@ export interface LogParams {
 export interface IGetHtml {
     entryFilePath?: string;
     entryFolderPath?: string;
+    ignore?: RegExp;
 }

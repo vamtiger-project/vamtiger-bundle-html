@@ -10,6 +10,7 @@ var CommandlineArgs;
     CommandlineArgs["relativePath"] = "relativePath";
     CommandlineArgs["watch"] = "watch";
     CommandlineArgs["ts"] = "ts";
+    CommandlineArgs["ignore"] = "ignore";
 })(CommandlineArgs = exports.CommandlineArgs || (exports.CommandlineArgs = {}));
 var ErrorMessage;
 (function (ErrorMessage) {
