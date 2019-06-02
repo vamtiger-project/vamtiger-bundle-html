@@ -10,11 +10,12 @@ const newline = '\n';
 const newlines = /\n/g;
 const space = ' ';
 
-export default async function ({ entryFilePath, entryFolderPath }: IGetHtml) {
-    const { file: files = [] } = (entryFolderPath && await getFolderContent({
+export default async function ({ entryFilePath, entryFolderPath, ignore }: IGetHtml) {
+    const { file: currentFiles = [] } = (entryFolderPath && await getFolderContent({
         path: entryFolderPath,
         classified: true
     }) || {}) as ClassifiedDirectoryContent;
+    const files = ignore && (currentFiles as string[]).filter(currentFile => !currentFile.match(ignore)) || currentFiles;
     const htmlFiles = Array.from(new Set([
         entryFilePath,
         ...files

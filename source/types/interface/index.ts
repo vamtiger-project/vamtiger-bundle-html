@@ -4,7 +4,8 @@ export interface MainParams {
     bundleFilePath: string;
     copyBundleFilePath?: string;
     json?: boolean;
-    ts?: boolean
+    ts?: boolean;
+    ignore?: RegExp;
 }
 
 export interface LogParams {
@@ -15,4 +16,5 @@ export interface LogParams {
 export interface IGetHtml {
     entryFilePath?: string;
     entryFolderPath?: string;
+    ignore?: RegExp;
 }

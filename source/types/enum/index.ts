@@ -6,7 +6,8 @@ export enum CommandlineArgs {
     json = 'json',
     relativePath = 'relativePath',
     watch = 'watch',
-    ts = 'ts'
+    ts = 'ts',
+    ignore = 'ignore'
 }
 
 export enum ErrorMessage {

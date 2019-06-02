@@ -16,12 +16,14 @@ export default async (params: Params) => {
         entryFilePath,
         entryFolderPath,
         bundleFilePath: bundleFile,
-        json, copyBundleFilePath
+        json, copyBundleFilePath,
+        ignore
     } = params;
     const ts = (bundleFile as string).match(tsExtension);
     const html = await getHtml({
         entryFilePath,
-        entryFolderPath
+        entryFolderPath,
+        ignore
     });
     const htmlBundle = html.replace(multiSpace, ' ') || '';
     const htmlBundleJson = json && JSON.stringify({html: htmlBundle});
